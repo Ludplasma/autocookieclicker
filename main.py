@@ -39,27 +39,21 @@ class AutoCookie:
         base_path = "div.product.unlocked.enabled"
         products = self.driver.find_elements(
             By.CSS_SELECTOR, base_path)
-        num_of_products = len(products)
+        product_btns = []
+        for product in products:
+            product_id = product.get_attribute("id")
+            product_btns.append(product_id)
 
-        return_products = []
-        for i in range(num_of_products):
-            product = {}
-            product["btnId"] = f"product{i}"
-            return_products.append(product)
-
-        return return_products[::-1]
+        return product_btns[::-1]
 
     def get_upgrades(self):
-        base_path = "div.upgrade.enabled"
+        base_path = "div.product.unlocked.enabled"
         upgrades = self.driver.find_elements(
             By.CSS_SELECTOR, base_path)
-        num_of_upgrades = len(upgrades)
-
         return_upgrades = []
-        for i in range(num_of_upgrades):
-            upgrade = {}
-            upgrade["btnId"] = f"upgrade{i}"
-            return_upgrades.append(upgrade)
+        for upgrade in upgrades:
+            upgrade_id = upgrade.get_attribute("id")
+            return_upgrades.append(upgrade_id)
 
         return return_upgrades[::-1]
 
@@ -83,9 +77,8 @@ class AutoCookie:
                     if len(upgrades) > 0:
                         best_upgrade = upgrades[0]
                         best_upgrade_el = self.driver.find_element(
-                            By.ID, best_upgrade["btnId"])
-                        ActionChains(self.driver).click(
-                            best_upgrade_el).perform()
+                            By.ID, best_upgrade)
+                        best_upgrade_el.click()
                     else:
                         enough_upgrade_money = False
                     time.sleep(0.1)
@@ -93,9 +86,8 @@ class AutoCookie:
                     if len(products) > 0:
                         best_product = products[0]
                         best_product_el = self.driver.find_element(
-                            By.ID, best_product["btnId"])
-                        ActionChains(self.driver).click(
-                            best_product_el).perform()
+                            By.ID, best_product)
+                        best_product_el.click()
                     else:
                         enough_product_money = False
 
