@@ -47,7 +47,7 @@ class AutoCookie:
         return product_btns[::-1]
 
     def get_upgrades(self):
-        base_path = "div.product.unlocked.enabled"
+        base_path = "div.upgrade.enabled"
         upgrades = self.driver.find_elements(
             By.CSS_SELECTOR, base_path)
         return_upgrades = []
