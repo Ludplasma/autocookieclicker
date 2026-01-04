@@ -114,7 +114,6 @@ def main():
 
     autoCookie = AutoCookie(driver)
     autoCookie.play()
-    print(autoCookie.get_products())
 
 
 if __name__ == "__main__":
