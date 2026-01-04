@@ -9,7 +9,7 @@ class AutoCookie:
     def __init__(self, driver):
         self.driver = driver
         self.cookieBTN = driver.find_element(By.ID, "bigCookie")
-        self.purchasing_interval = 5
+        self.purchasing_interval = 10
 
     def open_options(self):
         option_button = self.driver.find_element(
